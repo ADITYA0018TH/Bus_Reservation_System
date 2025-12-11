@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚌 Bus Reservation System
 
-## Getting Started
+A modern, full-stack bus ticket booking application built with **Next.js 16**, **React 19**, **MongoDB**, and **Tailwind CSS**. This application allows users to search for buses, view availability, and book tickets with a seamless user experience.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+-   **User Authentication**: Secure Sign Up and Login using JWT and Bcrypt.
+-   **Bus Search**: Search buses by Source, Destination, and Date.
+-   **Seat Selection**: Visual seat layout for selecting preferred seats.
+-   **Booking System**: Streamlined booking process with instant confirmation.
+-   **Booking History**: View past bookings and trip details.
+-   **Responsive Design**: Fully responsive UI built with Tailwind CSS and Framer Motion.
+-   **Dark/Light Mode**: (If applicable, or remove) Modern UI with clean aesthetics.
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+-   **Frontend**: React 19, TypeScript
+-   **Styling**: Tailwind CSS 4, Framer Motion, Lucide React (Icons)
+-   **Database**: MongoDB, Mongoose
+-   **Authentication**: JSON Web Tokens (JWT), BcryptJS
+-   **Utilities**: date-fns, clsx, tailwind-merge
+
+## 📂 Project Structure
+
+Here is the detailed structure of the project:
+
+```
+Bus_Reservation_System/
+├── public/                 # Static assets
+├── src/
+│   ├── app/                # Next.js App Router pages and API routes
+│   │   ├── api/            # Backend API Routes
+│   │   │   ├── auth/       # Authentication endpoints
+│   │   │   │   ├── login/      # POST /api/auth/login
+│   │   │   │   └── register/   # POST /api/auth/register
+│   │   │   ├── bookings/   # Booking endpoints
+│   │   │   │   ├── history/    # GET /api/bookings/history/[userId]
+│   │   │   │   └── route.ts    # POST /api/bookings
+│   │   │   └── locations/  # GET /api/locations (Available routes)
+│   │   ├── booking/        # Booking page (Seat selection & confirmation)
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css     # Global styles and Tailwind directives
+│   │   ├── layout.tsx      # Root layout component
+│   │   └── page.tsx        # Home page (Search form & Landing)
+│   ├── components/         # Reusable UI Components
+│   │   ├── ui/             # Generic UI elements (button, etc.)
+│   │   ├── BusCard.tsx     # Component to display bus details
+│   │   ├── Footer.tsx      # Application footer
+│   │   ├── Navbar.tsx      # Navigation bar
+│   │   └── SearchForm.tsx  # Search input form
+│   ├── lib/                # Utility functions and configurations
+│   │   ├── db.ts           # MongoDB connection handler
+│   │   └── utils.ts        # Helper functions (class merging, etc.)
+│   └── models/             # Mongoose schemas
+│       ├── Booking.ts      # Booking schema
+│       └── User.ts         # User schema
+├── .gitignore              # Git ignore file
+├── eslint.config.mjs       # ESLint configuration
+├── next-env.d.ts           # Next.js TypeScript declarations
+├── next.config.ts          # Next.js configuration
+├── package.json            # Project dependencies and scripts
+└── tsconfig.json           # TypeScript configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Installation & Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Follow these steps to set up the project locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
 
-## Learn More
+    ```bash
+    git clone <repository_url>
+    cd Bus_Reservation_System
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Install dependencies:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3.  **Environment Variables:**
 
-## Deploy on Vercel
+    Create a `.env.local` file in the root directory and add the following variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```env
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_secret_key_here
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    *Note: Replace `your_mongodb_connection_string` with your actual MongoDB URI (local or Atlas).*
+
+4.  **Run the development server:**
+
+    ```bash
+    npm run dev
+    ```
+
+5.  **Open the application:**
+
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **POST** | `/api/auth/register` | Register a new user |
+| **POST** | `/api/auth/login` | Authenticate user and get token |
+| **GET** | `/api/locations` | Get available bus locations |
+| **POST** | `/api/bookings` | Create a new booking |
+| **GET** | `/api/bookings/history/:userId` | Get booking history for a user |
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
+
+## 📄 License
+
+This project is licensed under the MIT License.
